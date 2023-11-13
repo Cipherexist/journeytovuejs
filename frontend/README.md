@@ -1,5 +1,8 @@
 # Quasar App (frontend-app)
 
+Execution policy Error 
+Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy Unrestricted
+
 A Quasar Project
 
 ## Install the dependencies
@@ -22,3 +25,5 @@ quasar build
 
 ### Customize the configuration
 See [Configuring quasar.config.js](https://v2.quasar.dev/quasar-cli-vite/quasar-config-js).
+
+
