@@ -3,7 +3,8 @@ const routes = [
   {
     path: "/", 
     name: 'Home Page', 
-    component: () => import('pages/Mainpage.vue')
+   // component: () => import('pages/Mainpage.vue')
+   component: () => import('pages/Practice.vue')
   },
   {
     path: '/old',
