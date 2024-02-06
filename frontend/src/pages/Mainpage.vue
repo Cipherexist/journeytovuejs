@@ -2,7 +2,7 @@
  h3 {
     color:pink;
  }
- .box 
+ .box
  {
     display: flex;
     justify-content: center;
@@ -10,7 +10,7 @@
  div > .searchbox
  {
    outline-offset: 10px;
-   outline-color: gray; 
+   outline-color: gray;
    outline-width: 1px;
    outline-style:groove;
    height: 50px;
@@ -25,29 +25,34 @@ width: auto;
 
 
 <template>
-        <div>
+        <!-- <div>
             <div class="box">
                 <h3 >TODOS</h3>
             </div>
             <div class="box">
                 <div class="container ">
-                    <q-form> 
-                      <q-input standout="bg-primary text-white" v-model="text" label="What needs to be done" style="width: 400px;"/> 
+                    <q-form>
+                      <q-input standout="bg-primary text-white" v-model="text" label="What needs to be done" style="width: 400px;"/>
                     </q-form>
-                    
+
                     </div>
                 </div>
-        </div>
+        </div> -->
 
-      
-<!-- 
-<input type="number" v-model="num1">
-<input type="number" v-model="num2"> -->
 
-<!-- <input type="number" v-model="obj.num1">
-<input type="number" v-model="obj.num2"> -->
-{{ answer2 }}  
 <br/>
+<label for="1">Number  </label>
+<input id="1" type="number" v-model="num1">
+<br/>
+<input type="number" v-model="num2">
+<br/>
+<input type="number" v-model="obj.num1">
+.<br/>
+<input type="number" v-model="obj.num2">
+
+<br/>
+{{ obj.num2 }}
+
 <h4 v-if="answer2 > 10">More than 10</h4>
 
 
@@ -61,7 +66,6 @@ import { computed } from '@vue/reactivity';
 import { reactive, ref } from 'vue';
 
 
-
 const batchno = ref(40)
 let num1 = ref(0)
 let num2 = ref(1)
@@ -72,11 +76,11 @@ const answer = computed(() => {
 
 const obj = reactive(
     {
-        num1: 0, 
+        num1: 0,
         num2: 0
     })
 
-    
+
 const answer2= computed(() => {
     return (obj.num1 + obj.num2)
 })

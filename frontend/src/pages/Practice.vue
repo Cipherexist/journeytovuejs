@@ -1,13 +1,38 @@
+<style>
+
+div {
+  color:blue
+}
+</style>
+
+
 <template>
 
-<div>Sample</div>
+<form id="search">
+    Search <input name="query" v-model="searchQuery">
+  </form>
+  <DemoGrid
+    :data="gridData"
+    :columns="gridColumns"
+    :filter-key="searchQuery">
+  </DemoGrid>
 
-<script setup> 
 
-const batchno = 
+</template>
 
+<script setup>
+import DemoGrid from './Grid.vue'
+import { ref } from 'vue'
+
+const searchQuery = ref('')
+const gridColumns = ['name', 'power']
+const gridData = [
+  { name: 'Chuck Norris', power: 500 },
+  { name: 'Bruce Lee', power: 9000 },
+  { name: 'Jackie Chan', power: 7000 },
+  { name: 'Jet Li', power: 8000 }
+]
 
 </script>
 
 
-</template>
