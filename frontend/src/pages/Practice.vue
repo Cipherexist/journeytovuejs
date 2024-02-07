@@ -7,31 +7,102 @@ div {
 
 
 <template>
+<p>NUMBER 1</p>
+<input type="number" v-model="num.slot1">
+<p>NUMBER 2</p>
+<input type="number" v-model="num.slot2">
+<br><br>
+<button @click="computeresult">COMPUTER</button>
 
-<form id="search">
-    Search <input name="query" v-model="searchQuery">
-  </form>
-  <DemoGrid
-    :data="gridData"
-    :columns="gridColumns"
-    :filter-key="searchQuery">
-  </DemoGrid>
+
+
+
+<h4>{{ if1 }}</h4>
+
+<ul>
+  <li v-for="(item, i) in cars" :key="i+'cars'">
+    Maker: {{ item.make  }} on year {{ item.year }}
+   </li>
+</ul>
 
 
 </template>
 
 <script setup>
-import DemoGrid from './Grid.vue'
-import { ref } from 'vue'
+import { computed, reactive, ref } from 'vue';
 
-const searchQuery = ref('')
-const gridColumns = ['name', 'power']
-const gridData = [
-  { name: 'Chuck Norris', power: 500 },
-  { name: 'Bruce Lee', power: 9000 },
-  { name: 'Jackie Chan', power: 7000 },
-  { name: 'Jet Li', power: 8000 }
+
+let changeble = ref(0)
+
+const num = reactive(
+  {
+    slot1: 0,
+    slot2: 0
+  })
+
+const  computeresult = computed(()=>{
+  changeble.value=  num.slot1 + num.slot2
+  return changeble
+})
+
+
+const if1 = computed(()=> changeble.value>10 ? changeble.value + " is More than 10" : changeble.value + " is Lowers than 10")
+
+
+
+const cars = [
+  {
+    make: "Toyota",
+    model: "Camry",
+    year: 2022
+  },
+  {
+    make: "Honda",
+    model: "Civic",
+    year: 2021
+  },
+  {
+    make: "Ford",
+    model: "F-150",
+    year: 2020
+  },
+  {
+    make: "Tesla",
+    model: "Model 3",
+    year: 2019
+  },
+  {
+    make: "Volkswagen",
+    model: "Jetta",
+    year: 2018
+  },
+  {
+    make: "Chevrolet",
+    model: "Silverado",
+    year: 2017
+  },
+  {
+    make: "Nissan",
+    model: "Altima",
+    year: 2016
+  },
+  {
+    make: "Dodge",
+    model: "Ram 1500",
+    year: 2015
+  },
+  {
+    make: "Jeep",
+    model: "Wrangler",
+    year: 2014
+  },
+  {
+    make: "Chrysler",
+    model: "300",
+    year: 2013
+  }
 ]
+
 
 </script>
 
