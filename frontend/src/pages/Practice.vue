@@ -7,13 +7,21 @@ div {
 
 
 <template>
-<p>NUMBER 1</p>
-<input type="number" v-model="num.slot1">
-<p>NUMBER 2</p>
-<input type="number" v-model="num.slot2">
-<br><br>
-<button @click="computeresult">COMPUTER</button>
+  <div class="q-pa-lg" style="width: auto;">
+    <div class="bg-dark q-pa-lg" style="width: 300px;">
 
+        <input type="number" v-model="num.slot1">
+        <p>NUMBER 2</p>
+        <input type="number" v-model="num.slot2">
+        <br><br>
+        <q-btn color="deep-orange" text-color="white" size="lg" label="Standard"  @click="computeresult"/>
+
+     </div>
+
+
+
+</div>
+<p>NUMBER 1</p>
 
 
 
@@ -47,8 +55,6 @@ const  computeresult = computed(()=>{
 
 
 const if1 = computed(()=> changeble.value>10 ? changeble.value + " is More than 10" : changeble.value + " is Lowers than 10")
-
-
 
 const cars = [
   {

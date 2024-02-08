@@ -7,6 +7,12 @@ const routes = [
    component: () => import('pages/Practice.vue')
   },
   {
+    path: "/products",
+    name: 'Products',
+    //component: () => import('pages/Mainpage.vue')
+   component: () => import('pages/ProductsCatalog.vue')
+  },
+  {
     path: '/old',
     component: () => import('layouts/MainLayout.vue'),
     children: [
