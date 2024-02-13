@@ -2,7 +2,8 @@
 .my-card
 {
   max-width: 230px;
-  height: 100px;
+  height: auto;
+  margin-top: 50px;
 }
 </style>
 
@@ -26,16 +27,13 @@ const props = defineProps(
     {
       required: true,
       type: Number
-    }
+    },
+    image:
+    {
+      required: true,
+      type: String
+    },
 
-  })
-
-  const totalprice  = ref(1000)
-  let additionvalue = 1300;
-
-  totalprice.value =  computed(()=>
-  {
-    return Number(props.price) + Number(additionvalue)
   })
 
 
@@ -45,7 +43,7 @@ const props = defineProps(
 <template>
 
 <q-card class="my-card" flat bordered>
-      <q-img src="https://cdn.quasar.dev/img/chicken-salad.jpg" />
+      <q-img :src="props.image" />
 
       <q-card-section>
         <q-btn
@@ -68,7 +66,7 @@ const props = defineProps(
 
       <q-card-section class="q-pt-none">
         <div class="text-subtitle1">
-          ${{ totalprice.value  }}
+          ${{ props.price }}
         </div>
 
       </q-card-section>
