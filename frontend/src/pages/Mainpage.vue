@@ -1,4 +1,4 @@
-<style scoped>
+4<style scoped>
  h3 {
     color:pink;
  }
@@ -53,7 +53,7 @@ width: auto;
 <br/>
 {{ obj.num2 }}
 
-<h4 v-if="answer2 > 10">More than 10</h4>
+<h4 v-if="answer2 > 10">More than 12</h4>
 
 
 </template>
