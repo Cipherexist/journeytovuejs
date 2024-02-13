@@ -1,7 +1,7 @@
 <style >
 .my-card
 {
-  max-width: 230px;
+  max-width: 300px;
   height: auto;
   margin-top: 50px;
 }
