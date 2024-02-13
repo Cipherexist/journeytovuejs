@@ -1,9 +1,8 @@
-<style >
+<style scoped>
 .my-card
 {
   max-width: 230px;
   height: auto;
-  margin-top: 50px;
 }
 </style>
 
@@ -13,6 +12,11 @@ import { computed, ref } from 'vue';
 
 const props = defineProps(
   {
+    id:
+    {
+      required: true,
+      type: String
+    },
     name:
     {
       required: true,
@@ -36,6 +40,11 @@ const props = defineProps(
 
   })
 
+  function addtocart(id)
+  {
+    console.log("MYPRODUCTID", id)
+  }
+
 
 </script>
 
@@ -43,11 +52,13 @@ const props = defineProps(
 <template>
 
 <q-card class="my-card" flat bordered>
-      <q-img :src="props.image" />
+      <q-img :src="props.image" :fit="fill"/>
 
       <q-card-section>
         <q-btn
+          
           fab
+          @click="addtocart(props.id)"
           color="primary"
           icon="place"
           class="absolute"

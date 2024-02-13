@@ -53,7 +53,7 @@ width: auto;
 <br/>
 {{ obj.num2 }}
 
-<h4 v-if="answer2 > 10">More than 12</h4>
+<h4 v-if="answer2 > 10">More than 1280</h4>
 
 
 </template>
