@@ -7,6 +7,8 @@
 </style>
 
 <script setup>
+import { computed, ref } from 'vue';
+
 
 const props = defineProps(
   {
@@ -23,9 +25,17 @@ const props = defineProps(
     price:
     {
       required: true,
-      type: String
+      type: Number
     }
 
+  })
+
+  const totalprice  = ref(1000)
+  let additionvalue = 1300;
+
+  totalprice.value =  computed(()=>
+  {
+    return Number(props.price) + Number(additionvalue)
   })
 
 
@@ -58,7 +68,7 @@ const props = defineProps(
 
       <q-card-section class="q-pt-none">
         <div class="text-subtitle1">
-          {{ props.price  }}
+          ${{ totalprice.value  }}
         </div>
 
       </q-card-section>
