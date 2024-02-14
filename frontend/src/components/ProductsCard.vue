@@ -1,10 +1,3 @@
-<style scoped>
-.my-card
-{
-  max-width: 300px;
-  height: auto;
-}
-</style>
 
 <script setup>
 import { computed, ref } from 'vue';
@@ -49,28 +42,51 @@ const props = defineProps(
 </script>
 
 
+<style scoped>
+.my-card
+{
+  max-width: 250px;
+  height: 350px;
+}
+
+.img
+{
+  max-width: 180px;
+  height: 220px;
+  object-fit: scale-down;
+}
+</style>
+
+
 <template>
 
 <q-card class="my-card" flat bordered>
-      <q-img :src="props.image" :fit="fill"/>
+      <!-- <q-img  :fit="fill"/> -->
+      <div class="q-pa-md">
+          <q-img class="img" :src="props.image" :fit="fill">
+              <div class="absolute-bottom text-subtitle1 text-center">
+                {{props.name}}
+              </div>
+          </q-img>
+      </div>
 
       <q-card-section>
         <q-btn
-          
+
           fab
           @click="addtocart(props.id)"
           color="primary"
-          icon="place"
+          icon="shopping_cart"
           class="absolute"
-          style="top: 0; right: 12px; transform: translateY(-50%);"
+          style="top: 0; right: 10px; transform: translateY(-50%);"
         />
 
-        <div class="row no-wrap items-center">
+        <!-- <div class="row no-wrap items-center">
           <div class="col text-h6 ellipsis">
             {{props.name}}
           </div>
 
-        </div>
+        </div> -->
 
         <q-rating v-model="ratingModel" :model-value="props.rating" :max="5" size="32px" />
       </q-card-section>
@@ -84,12 +100,12 @@ const props = defineProps(
 
       <q-separator />
 
-      <q-card-actions>
+      <!-- <q-card-actions>
         <q-btn flat round icon="event" />
         <q-btn flat color="primary">
           Reserve
         </q-btn>
-      </q-card-actions>
+      </q-card-actions> -->
     </q-card>
 
 </template>

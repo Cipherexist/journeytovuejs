@@ -1,19 +1,19 @@
 <template>
 
 
-  <h1>PRODUCT CATALOG</h1>
+  <h4>PRODUCT CATALOG</h4>
 
   <div class="row">
 
   <div class="q-pa-md q-gutter-md" v-for="(item) in products" :key="item.id + 'products'">
     <div class="col-2">
       <ProductCard
-        :id="item.id"  
+        :id="item.id"
         :name="item.title"
         :rating="item.rating.rate"
         :price="item.price"
         :image="item.image"/>
-        
+
     </div>
   </div>
 </div>
