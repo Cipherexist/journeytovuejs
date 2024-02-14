@@ -30,16 +30,22 @@ const props = defineProps(
       required: true,
       type: String
     },
+    description:
+    {
+      required: true,
+      type: String
+    },
+
 
   })
 
-  function addtocart(id)
+  function addtocart(id,name,image,price,description)
   {
-    // console.log("MYPRODUCTID", id)
-    $imits('Clickaddtocart',id)
+     console.log("MYPRODUCTID", name)
+    $imits('clickaddtocart',{id,name,image,price,description})
   }
 
-  const $imits = defineEmits(['Clickaddtocart'])
+  const $imits = defineEmits(['clickaddtocart'])
 
 </script>
 
@@ -65,7 +71,7 @@ const props = defineProps(
 <q-card class="my-card" flat bordered>
       <!-- <q-img  :fit="fill"/> -->
       <div class="q-pa-md">
-          <q-img class="img" :src="props.image" :fit="fill">
+          <q-img class="img" :src="props.image" fit="fill">
               <div class="absolute-bottom text-subtitle6 text-center">
                 {{props.name}}
               </div>
@@ -76,7 +82,7 @@ const props = defineProps(
         <q-btn
 
           fab
-          @click="addtocart(props.id)"
+          @click="addtocart(props.id,props.name,props.image,props.price,props.description)"
           color="primary"
           icon="shopping_cart"
           class="absolute"
