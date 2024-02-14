@@ -13,6 +13,7 @@
 
     <div class="row">
 
+
         <div class="q-pa-md q-gutter-md" v-for="(item) in products" :key="item.id + 'products/'">
            <!-- {{ component.searchtext = item.title }} -->
           <div class="col-2" v-if="component.searchbox==''">
@@ -26,7 +27,7 @@
                 @-clickaddtocart="Savetocart"/>
             </div>
 
-            <div class="col-2" v-if="item.title.toLowerCase().includes(component.searchbox.toLowerCase())">
+            <div class="col-2" v-else-if="item.title.toLowerCase().includes(component.searchbox.toLowerCase())">
               <ProductCard
                 :id="item.id"
                 :name="item.title"
