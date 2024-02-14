@@ -35,9 +35,11 @@ const props = defineProps(
 
   function addtocart(id)
   {
-    console.log("MYPRODUCTID", id)
+    // console.log("MYPRODUCTID", id)
+    $imits('Clickaddtocart',id)
   }
 
+  const $imits = defineEmits(['Clickaddtocart'])
 
 </script>
 
@@ -64,7 +66,7 @@ const props = defineProps(
       <!-- <q-img  :fit="fill"/> -->
       <div class="q-pa-md">
           <q-img class="img" :src="props.image" :fit="fill">
-              <div class="absolute-bottom text-subtitle1 text-center">
+              <div class="absolute-bottom text-subtitle6 text-center">
                 {{props.name}}
               </div>
           </q-img>
