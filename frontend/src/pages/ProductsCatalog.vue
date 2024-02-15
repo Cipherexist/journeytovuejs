@@ -12,6 +12,12 @@
   height: 150px;
 }
 
+.whole-card
+{
+  max-height: 90vh;
+  width: 90vh
+}
+
 </style>
 
 
@@ -63,14 +69,14 @@
       </div>
 
       <q-page-sticky position="bottom-right" :offset="[18, 18]">
-            <q-btn fab icon="shopping_cart" color="positive">
+            <q-btn fab icon="shopping_cart" color="positive" @click="viewcart = true">
               <q-badge color="red" floating>{{ store.cart.length }}</q-badge>
             </q-btn>
       </q-page-sticky>
   </q-page-container>
 </q-layout>
 
-<q-dialog v-model="icon">
+<q-dialog v-model="viewproduct">
   <q-card class="my-card">
     <div class="q-pa-md ">
       <q-img class="img" :src="component.popupimage" fit="fill" />
@@ -105,6 +111,42 @@
 </q-dialog>
 
 
+<q-dialog v-model="viewcart">
+      <q-card class="whole-card">
+        <q-card-section>
+          <div class="text-h6">My Product</div>
+        </q-card-section>
+
+        <q-separator />
+
+        <q-card-section class="scroll">
+
+          <!-- ADD HERE -->
+          <div class="q-pa-md q-gutter-md">
+            <div class="col-2" v-for="(item,i) in store.cart" :key="i+ 'cart'">
+              <ProductItem
+              :title="item.title"
+              :description="item.description"
+              :image = "item.image"
+              />
+            </div>
+
+
+
+
+          </div>
+
+        </q-card-section>
+
+
+        <q-card-actions align="right">
+          <q-btn flat label="Close" color="primary" v-close-popup />
+        </q-card-actions>
+      </q-card>
+</q-dialog>
+
+
+
 
 
 
@@ -134,7 +176,7 @@ function Savetocart(data)
   component.popupprice = data.price
   component.popupdescription = data.description
   component.popobj = data.obj
-  icon.value = true
+  viewproduct.value = true
   //console.log("SERVER ID",data.id)
   //console.log("SERVER NAME",data.name)
  // console.log("SERVER OBJ",component.popobj)
@@ -142,20 +184,27 @@ function Savetocart(data)
 
 function addtocart()
 {
-  console.log(component.popobj)
+//  console.log(component.popobj)
   store.cart.push({...component.popobj})
+
+  console.log(store.cart)
 }
 
 
 
 
 import ProductCard from "components/ProductsCard.vue"
+import ProductItem from "components/ProductsItem.vue"
+
 import {computed, inject, onMounted, reactive, ref } from "vue";
 
 
 
 
-const icon = ref(false)
+const viewproduct = ref(false)
+const viewcart = ref(false)
+
+
 const component = reactive
 (
   {
