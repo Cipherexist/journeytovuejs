@@ -31,11 +31,12 @@
           <div class="row">
 
 
-              <div class="q-pa-md q-gutter-md" v-for="(item) in products" :key="item.id + 'products/'">
+              <div class="q-pa-md q-gutter-md" v-for="(item) in store.products" :key="item.id + 'products/'">
                 <!-- {{ component.searchtext = item.title }} -->
                 <div class="col-2" v-if="component.searchbox==''">
 
                     <ProductCard
+                      :obj="item"
                       :id="item.id"
                       :name="item.title"
                       :rating="item.rating.rate"
@@ -46,7 +47,8 @@
                   </div>
 
                   <div class="col-2" v-else-if="item.title.toLowerCase().includes(component.searchbox.toLowerCase())">
-                    <ProductCard
+                      <ProductCard
+                       :obj="item"
                       :id="item.id"
                       :name="item.title"
                       :rating="item.rating.rate"
@@ -61,8 +63,10 @@
       </div>
 
       <q-page-sticky position="bottom-right" :offset="[18, 18]">
-            <q-btn fab icon="shopping_cart" color="positive" />
-          </q-page-sticky>
+            <q-btn fab icon="shopping_cart" color="positive">
+              <q-badge color="red" floating>{{ store.cart.length }}</q-badge>
+            </q-btn>
+      </q-page-sticky>
   </q-page-container>
 </q-layout>
 
@@ -95,7 +99,7 @@
         <q-separator />
 
         <q-card-actions align="right">
-          <q-btn v-close-popup flat color="primary" label="Add to Cart" round icon="shopping_cart" />
+          <q-btn v-close-popup flat color="primary" label="Add to Cart" round icon="shopping_cart" @click="addtocart"/>
         </q-card-actions>
       </q-card>
 </q-dialog>
@@ -125,15 +129,25 @@ function showlogs()
 
 function Savetocart(data)
 {
-
-  console.log("SERVER ID",data.id)
-  console.log("SERVER NAME",data.name)
   component.popuptitle = data.name
   component.popupimage = data.image
   component.popupprice = data.price
   component.popupdescription = data.description
+  component.popobj = data.obj
   icon.value = true
+  //console.log("SERVER ID",data.id)
+  //console.log("SERVER NAME",data.name)
+ // console.log("SERVER OBJ",component.popobj)
 }
+
+function addtocart()
+{
+  console.log(component.popobj)
+  store.cart.push({...component.popobj})
+}
+
+
+
 
 import ProductCard from "components/ProductsCard.vue"
 import {computed, inject, onMounted, reactive, ref } from "vue";
@@ -142,7 +156,6 @@ import {computed, inject, onMounted, reactive, ref } from "vue";
 
 
 const icon = ref(false)
-
 const component = reactive
 (
   {
@@ -151,18 +164,20 @@ const component = reactive
     popuptitle: "",
     popupdescription: "",
     popupimage: "",
-    popupprice: ""
+    popupprice: "",
+    popobj: []
   }
 
 )
 
 
 
-let products = ref([])
+// let products = ref([])
 
 
 const fakecart = inject("fakestoreapi")
 
+const store = inject("$store")
 
 
 
@@ -172,7 +187,7 @@ onMounted(async ()=>
   const result = await fakecart.get("/products")
   console.log("MY PRODUCTS",result.data)
 
-  products.value = result.data
+  store.products = result.data
 })
 
 

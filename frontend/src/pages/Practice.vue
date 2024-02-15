@@ -7,6 +7,8 @@ div {
 
 
 <template>
+
+  <MyHeader/>
   <div class="q-pa-lg" style="width: auto;">
     <div class="bg-dark q-pa-lg" style="width: 300px;">
 
@@ -15,6 +17,7 @@ div {
         <input type="number" v-model="num.slot2">
         <br><br>
         <q-btn color="deep-orange" text-color="white" size="lg" label="Standard"  @click="computeresult"/>
+        <q-btn class="row q-mt-sm" color="positive" text-color="white" size="md" label="Standard"  @click="routenext"/>
 
      </div>
 
@@ -37,8 +40,14 @@ div {
 </template>
 
 <script setup>
+import router from 'src/router';
 import { computed, reactive, ref } from 'vue';
+import MyHeader from 'components/header.vue'
 
+function routenext()
+{
+  router.replace({ path: '/Product' })
+}
 
 let changeble = ref(0)
 

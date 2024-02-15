@@ -1,10 +1,16 @@
 
 <script setup>
-import { computed, ref } from 'vue';
+import { computed, ref, inject } from 'vue';
+
+const $store = inject("$store")
 
 
 const props = defineProps(
   {
+    obj:
+    {
+      type: Object
+    },
     id:
     {
       required: true,
@@ -39,13 +45,19 @@ const props = defineProps(
 
   })
 
-  function addtocart(id,name,image,price,description)
+  function addtocart(id,name,image,price,description,obj)
   {
-     console.log("MYPRODUCTID", name)
-    $imits('clickaddtocart',{id,name,image,price,description})
+   //  console.log("MYPRODUCTID", name)
+
+    $imits('clickaddtocart',{id,name,image,price,description,obj})
+   // $store.cart.push({...props.obj})
+
+   // console.log("LENGHTS", obj)
   }
 
   const $imits = defineEmits(['clickaddtocart'])
+
+
 
 </script>
 
@@ -82,7 +94,7 @@ const props = defineProps(
         <q-btn
 
           fab
-          @click="addtocart(props.id,props.name,props.image,props.price,props.description)"
+          @click="addtocart(props.id,props.name,props.image,props.price,props.description,props.obj)"
           color="primary"
           icon="shopping_cart"
           class="absolute"
