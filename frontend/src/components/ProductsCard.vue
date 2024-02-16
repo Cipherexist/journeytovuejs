@@ -65,8 +65,9 @@ const props = defineProps(
 <style scoped>
 .my-card
 {
-  max-width: 250px;
-  height: 350px;
+  max-width: 300px;
+  width: 250px;
+  max-height: 350px;
 }
 
 .img
