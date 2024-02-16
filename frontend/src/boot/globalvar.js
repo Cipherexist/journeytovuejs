@@ -10,7 +10,8 @@ export default boot(async ({app}/* { app, router, ... } */) => {
   const $store = reactive(
     {
       product: [],
-      cart: []
+      cart: [],
+      totalprice: 0
     }
   )
 

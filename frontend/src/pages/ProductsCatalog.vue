@@ -114,7 +114,7 @@
 <q-dialog v-model="viewcart">
       <q-card class="whole-card">
         <q-card-section>
-          <div class="text-h6">My Product</div>
+          <div class="text-h6">My Cart</div>
         </q-card-section>
 
         <q-separator />
@@ -123,24 +123,28 @@
 
           <!-- ADD HERE -->
           <div class="q-pa-md q-gutter-md">
-            <div class="col-2" v-for="(item,i) in store.cart" :key="i+ 'cart'">
+            <div v-for="(item,i) in store.cart" :key="i+ 'cart'">
               <ProductItem
               :title="item.title"
               :description="item.description"
               :image = "item.image"
+              :price = "item.price"
               />
+
             </div>
-
-
-
-
           </div>
 
         </q-card-section>
 
-
+      <q-card-section>
+        <div class="text-subtitle1 q-ma-md">
+          TOTAL: ${{ store.totalprice }}
+         </div>
+      </q-card-section>
         <q-card-actions align="right">
-          <q-btn flat label="Close" color="primary" v-close-popup />
+
+         <q-btn flat label="Close" color="primary" v-close-popup />
+         <q-btn flat label="Check-Out" color="primary" v-close-popup />
         </q-card-actions>
       </q-card>
 </q-dialog>
@@ -161,7 +165,6 @@
 <script setup>
 
 const containstxt = computed(()=>{ component.searchbox.contains(component.searchtext)})
-
 function showlogs()
 {
   console.log("Show Logs", component.searchbox)
